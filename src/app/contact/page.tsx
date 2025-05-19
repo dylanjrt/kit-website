@@ -51,7 +51,7 @@ export default function Contact() {
   return (
     <div className="flex h-screen items-center justify-center">
       <form
-        className="bg-[text-main]/ w-full max-w-md rounded border border-dashed p-12 [border-image:repeating-linear-gradient(to_right,transparent,transparent_10px,currentColor_10px,currentColor_20px)_1]"
+        className="bg-[text-main]/ w-full max-w-md rounded border border-dashed p-12 [border-image:repeating-linear-gradient(45deg,transparent,transparent_10px,currentColor_10px,currentColor_20px)_1]"
         onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
