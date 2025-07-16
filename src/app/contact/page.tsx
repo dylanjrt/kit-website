@@ -1,5 +1,7 @@
 import { getArtist, getSettings } from "../../sanity/queries";
 import ContactForm from "../../components/ContactForm";
+import Image from "next/image";
+import { getImageUrl } from "../../lib/sanity-image";
 
 export default async function ContactPage() {
   const [artist, settings] = await Promise.all([getArtist(), getSettings()]);
@@ -19,21 +21,17 @@ export default async function ContactPage() {
                 the subtle beauty of handmade ceramics.
               </p>
 
-              {artist && artist.shortBio && (
-                <p>
-                  {artist.name}{" "}
-                  {artist.location && `is based in ${artist.location}`} and
-                  creates work that explores the intersection of traditional
-                  ceramic techniques and contemporary design.
-                  {artist.shortBio}
-                </p>
-              )}
-
               <p>
                 Whether you&apos;re looking for a custom piece, interested in a
                 collaboration, or would like to visit the studio, we&apos;d love
                 to hear from you.
               </p>
+              <Image
+                src={getImageUrl(artist?.profileImage, 500, 500) || ""}
+                alt={artist?.name}
+                width={500}
+                height={500}
+              />
             </div>
           </div>
 
