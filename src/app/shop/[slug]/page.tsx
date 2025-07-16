@@ -119,7 +119,9 @@ export default async function ItemPage({ params }: ItemPageProps) {
                       Materials:
                     </span>
                     <p className="text-primary-text font-serif">
-                      {item.materials}
+                      {Array.isArray(item.materials)
+                        ? item.materials.filter(Boolean).join(", ")
+                        : item.materials}
                     </p>
                   </div>
                 )}
