@@ -36,7 +36,7 @@ export default function CategoryFilter({
         href={`/shop?${createQueryString(null)}`}
         className={`transition-colors duration-200 ${
           !selectedCategory
-            ? "decoration-primary-text font-bold underline underline-offset-4"
+            ? "decoration-primary-text underline underline-offset-4"
             : "hover:text-secondary-text"
         }`}
       >
@@ -49,7 +49,7 @@ export default function CategoryFilter({
           href={`/shop?${createQueryString(category.slug.current)}`}
           className={`transition-colors duration-200 ${
             selectedCategory === category.slug.current
-              ? "decoration-primary-text font-bold underline underline-offset-4"
+              ? "decoration-primary-text underline underline-offset-4"
               : "hover:text-secondary-text"
           }`}
         >

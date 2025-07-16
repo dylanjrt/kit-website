@@ -51,8 +51,6 @@ export default function ContactForm() {
 
   return (
     <div className="space-y-6">
-      <h3 className="text-primary-text font-serif text-xl">Send a Message</h3>
-
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Name */}
         <div>
@@ -156,7 +154,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-primary-text text-background-color hover:bg-secondary-text w-full px-6 py-3 font-serif transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50"
+          className="text-primary hover:bg-primary hover:text-background border-primary border px-6 py-3 font-serif disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? "Sending..." : "Send Message"}
         </button>

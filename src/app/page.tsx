@@ -12,9 +12,9 @@ export default async function HomePage() {
 
   return (
     <div className="bg-background-color">
-      <div className="flex pt-32">
+      <div className="flex">
         {/* Left Section - Artist Bio */}
-        <div className="flex w-1/2 p-8">
+        <div className="flex w-1/2 justify-end p-8">
           <div className="max-w-md">
             <p className="text-primary-text font-serif text-lg leading-relaxed">
               {artist?.shortBio ||
@@ -24,7 +24,7 @@ export default async function HomePage() {
         </div>
 
         {/* Right Section - Featured Item */}
-        <div className="flex w-1/2 items-center justify-center p-8">
+        <div className="flex w-1/2 items-center justify-start p-8">
           {featuredItem && (
             <div className="relative w-full max-w-lg">
               {featuredItem.images?.[0] && (
@@ -39,11 +39,6 @@ export default async function HomePage() {
             </div>
           )}
         </div>
-      </div>
-
-      {/* Footer Credit */}
-      <div className="text-primary-text fixed right-6 bottom-6 font-serif text-sm">
-        site by: <span className="underline">Dylan RT</span>
       </div>
     </div>
   );

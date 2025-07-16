@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "../components/Navigation";
 import { Tinos } from "next/font/google";
-
+import Footer from "../components/Footer";
 const tinos = Tinos({
   variable: "--font-tinos",
   subsets: ["latin"],
@@ -27,6 +27,7 @@ export default function RootLayout({
       >
         <Navigation />
         <main className="p-8">{children}</main>
+        <Footer />
       </body>
     </html>
   );

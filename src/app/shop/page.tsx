@@ -29,7 +29,7 @@ export default async function ShopPage({
 
   return (
     <div className="bg-background-color min-h-screen">
-      <main className="container mx-auto px-4 pt-24 pb-16 sm:px-6 lg:px-8">
+      <main className="container mx-auto px-4 pb-16 sm:px-6 lg:px-8">
         {/* Category Filters */}
         <div className="mb-8">
           <CategoryFilter
@@ -74,11 +74,6 @@ export default async function ShopPage({
           )}
         </div>
       </main>
-
-      {/* Footer Credit - Changed from fixed to relative positioning */}
-      <footer className="text-primary-text py-8 text-center font-serif text-sm">
-        site by: <span className="underline">Dylan RT</span>
-      </footer>
     </div>
   );
 }
