@@ -1,30 +1,52 @@
-import {
-  getAllItems,
-  getAllCategories,
-  getSettings,
-} from "../../sanity/queries";
-import { getImageUrl } from "../../lib/sanity-image";
+import { getAllItems, getAllCategories } from "../../sanity/queries";
 import CategoryFilter from "../../components/CategoryFilter";
 import ProductGrid from "../../components/ProductGrid";
 import FeaturedProduct from "../../components/FeaturedProduct";
+
+interface Item {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  description?: string;
+  price?: number;
+  currency?: string;
+  availability?: string;
+  featured?: boolean;
+  publishedAt?: string;
+  images?: Array<{
+    asset: { _ref: string; _type: string };
+    alt?: string;
+    caption?: string;
+  }>;
+  category?: {
+    title: string;
+    slug: { current: string };
+  };
+  tags?: string[];
+  dimensions?: string;
+  materials?: string;
+  technique?: string;
+  firing?: string;
+}
 
 export default async function ShopPage({
   searchParams,
 }: {
   searchParams: { category?: string };
 }) {
-  const [items, categories, settings] = await Promise.all([
+  const [items, categories] = await Promise.all([
     getAllItems(),
     getAllCategories(),
-    getSettings(),
   ]);
 
   const selectedCategory = searchParams.category;
   const filteredItems = selectedCategory
-    ? items.filter((item) => item.category?.slug?.current === selectedCategory)
+    ? items.filter(
+        (item: Item) => item.category?.slug?.current === selectedCategory,
+      )
     : items;
 
-  const featuredItem = filteredItems[0] || items[0];
+  const featuredItem = filteredItems.length > 0 ? filteredItems[0] : null;
   const gridItems = filteredItems.slice(1);
 
   return (
@@ -48,22 +70,19 @@ export default async function ShopPage({
               </div>
 
               {/* Product Grid Section */}
-              <div className="lg:pl-8">
-                <h2 className="text-primary-text mb-6 font-serif text-lg">
-                  More Items
-                </h2>
-                <ProductGrid items={gridItems} />
-              </div>
+              {gridItems.length > 0 && (
+                <div className="lg:pl-8">
+                  <ProductGrid items={gridItems} />
+                </div>
+              )}
             </section>
           )}
-
           {/* Fallback: Show only grid if no featured item */}
           {!featuredItem && gridItems.length > 0 && (
             <section>
               <ProductGrid items={gridItems} />
             </section>
           )}
-
           {/* Empty state */}
           {filteredItems.length === 0 && (
             <div className="py-16 text-center">
