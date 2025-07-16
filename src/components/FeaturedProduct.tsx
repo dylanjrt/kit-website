@@ -1,12 +1,15 @@
 import { getImageUrl } from "../lib/sanity-image";
+import Link from "next/link";
+import Image from "next/image";
 
 interface Item {
   _id: string;
   title: string;
   price: number;
   currency: string;
+  slug: { current: string };
   images: Array<{
-    asset: any;
+    asset: { _ref: string; _type: string };
     alt: string;
     caption?: string;
   }>;
@@ -34,25 +37,26 @@ export default function FeaturedProduct({ item }: FeaturedProductProps) {
     <div className="space-y-6">
       {/* Product Image */}
       {item.images?.[0] && (
-        <div className="relative">
-          <img
-            src={getImageUrl(item.images[0], 600, 800) || ""}
-            alt={item.images[0].alt || item.title}
-            className="h-auto w-full object-cover"
-          />
-
-          {/* Image Navigation Dots */}
-          <div className="mt-4 flex justify-center space-x-2">
-            <div className="bg-primary-text h-2 w-2 rounded-full"></div>
-            <div className="border-primary-text h-2 w-2 rounded-full border"></div>
-            <div className="border-primary-text h-2 w-2 rounded-full border"></div>
+        <Link href={`/shop/${item.slug.current}`} className="group block">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+            <Image
+              src={getImageUrl(item.images[0], 600, 800) || ""}
+              alt={item.images[0].alt || item.title}
+              width={600}
+              height={800}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
           </div>
-        </div>
+        </Link>
       )}
 
       {/* Product Info */}
       <div className="space-y-4">
-        <h2 className="text-primary-text font-serif text-xl">{item.title}</h2>
+        <Link href={`/shop/${item.slug.current}`} className="group block">
+          <h2 className="text-primary-text group-hover:text-secondary-text font-serif text-xl transition-colors duration-200">
+            {item.title}
+          </h2>
+        </Link>
 
         <p className="text-primary-text font-serif text-lg">
           {formatPrice(item.price, item.currency)}
@@ -61,9 +65,11 @@ export default function FeaturedProduct({ item }: FeaturedProductProps) {
         {/* Product Specifications */}
         <div className="text-primary-text space-y-2 font-serif text-sm">
           {item.materials?.[0] && <p>Glaze: {item.materials[0]}</p>}
-          {item.dimensions?.height && <p>Height: {item.dimensions.height}"</p>}
+          {item.dimensions?.height && (
+            <p>Height: {item.dimensions.height}&quot;</p>
+          )}
           {item.dimensions?.width && (
-            <p>Base Width: {item.dimensions.width}"</p>
+            <p>Base Width: {item.dimensions.width}&quot;</p>
           )}
         </div>
 
