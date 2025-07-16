@@ -26,7 +26,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
     <div className="space-y-4">
       {/* Main Image */}
       {images[selectedImageIndex] && (
-        <div className="aspect-[3/4] overflow-hidden rounded-sm">
+        <div className="aspect-[3/4] overflow-hidden">
           <Image
             src={getImageUrl(images[selectedImageIndex], 800, 1000) || ""}
             alt={images[selectedImageIndex].alt || title}
@@ -43,7 +43,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
           {images.map((image, index) => (
             <div
               key={index}
-              className={`aspect-square cursor-pointer overflow-hidden rounded-sm border-2 transition-all duration-200 ${
+              className={`aspect-square cursor-pointer overflow-hidden border-2 transition-all duration-200 ${
                 index === selectedImageIndex
                   ? "border-primary-text"
                   : "hover:border-primary-text/50 border-transparent"
