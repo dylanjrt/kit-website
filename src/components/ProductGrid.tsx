@@ -38,7 +38,7 @@ export default function ProductGrid({ items }: ProductGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+    <div className="grid grid-cols-1 gap-18 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {items.map((item) => (
         <Link
           key={item._id}
@@ -47,19 +47,19 @@ export default function ProductGrid({ items }: ProductGridProps) {
         >
           {/* Product Image */}
           {item.images?.[0] && (
-            <div className="mb-3 aspect-[3/4] overflow-hidden rounded-sm">
+            <div className="mb-4 aspect-[4/5] overflow-hidden">
               <Image
-                src={getImageUrl(item.images[0], 400, 500) || ""}
+                src={getImageUrl(item.images[0], 300, 375) || ""}
                 alt={item.images[0].alt || item.title}
-                width={400}
-                height={500}
+                width={300}
+                height={375}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
           )}
 
           {/* Product Info */}
-          <div className="space-y-1">
+          <div className="space-y-2">
             <h3 className="text-primary-text group-hover:text-secondary-text font-serif text-sm font-medium transition-colors duration-200">
               {item.title}
             </h3>

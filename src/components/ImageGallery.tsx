@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { getImageUrl } from "../lib/sanity-image";
+import Image from "next/image";
 
 interface Image {
   asset: { _ref: string; _type: string };
@@ -26,9 +27,11 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
       {/* Main Image */}
       {images[selectedImageIndex] && (
         <div className="aspect-[3/4] overflow-hidden rounded-sm">
-          <img
+          <Image
             src={getImageUrl(images[selectedImageIndex], 800, 1000) || ""}
             alt={images[selectedImageIndex].alt || title}
+            width={800}
+            height={1000}
             className="h-full w-full object-cover"
           />
         </div>
@@ -47,9 +50,11 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
               }`}
               onClick={() => handleImageClick(index)}
             >
-              <img
+              <Image
                 src={getImageUrl(image, 200, 200) || ""}
                 alt={image.alt || `${title} - Image ${index + 1}`}
+                width={200}
+                height={200}
                 className="h-full w-full object-cover"
               />
             </div>
