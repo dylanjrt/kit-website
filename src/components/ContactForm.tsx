@@ -5,7 +5,6 @@ import { useState } from "react";
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     subject: "",
     message: "",
   });
@@ -37,7 +36,6 @@ export default function ContactForm() {
       // Reset form
       setFormData({
         name: "",
-        email: "",
         subject: "",
         message: "",
       });
@@ -72,26 +70,6 @@ export default function ContactForm() {
           />
         </div>
 
-        {/* Email */}
-        <div>
-          <label
-            htmlFor="email"
-            className="text-primary-text mb-2 block font-serif text-sm"
-          >
-            Email *
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="border-border-color bg-background-color text-primary-text focus:border-primary-text w-full border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
-            disabled={isSubmitting}
-          />
-        </div>
-
         {/* Subject */}
         <div>
           <label
@@ -109,10 +87,18 @@ export default function ContactForm() {
             disabled={isSubmitting}
           >
             <option value="">Select a subject</option>
-            <option value="custom-order">Custom Order</option>
-            <option value="collaboration">Collaboration</option>
-            <option value="wholesale">Wholesale Inquiry</option>
-            <option value="general">General Inquiry</option>
+            <option value="custom-order" data-label="Custom Order">
+              Custom Order
+            </option>
+            <option value="collaboration" data-label="Collaboration">
+              Collaboration
+            </option>
+            <option value="wholesale" data-label="Wholesale Inquiry">
+              Wholesale Inquiry
+            </option>
+            <option value="general" data-label="General Inquiry">
+              General Inquiry
+            </option>
           </select>
         </div>
 
@@ -151,13 +137,19 @@ export default function ContactForm() {
         )}
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="text-primary hover:bg-primary hover:text-background border-primary border px-6 py-3 font-serif disabled:cursor-not-allowed disabled:opacity-50"
+        <a
+          href={`mailto:bollag.miller@gmail.com?subject=${encodeURIComponent(formData.subject || "Inquiry")}&body=${encodeURIComponent(`${formData.message}\n\n ${formData.name || ""}`)}`}
+          className="text-primary hover:bg-primary hover:text-background border-primary inline-block cursor-pointer border px-6 py-3 text-center font-serif disabled:cursor-not-allowed disabled:opacity-50"
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={0}
+          aria-disabled={formData.message.trim() === ""}
+          onClick={(e) => {
+            if (!formData.message.trim()) e.preventDefault();
+          }}
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
-        </button>
+          Generate Email Draft
+        </a>
       </form>
     </div>
   );
