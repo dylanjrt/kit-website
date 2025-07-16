@@ -13,8 +13,8 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="w-full p-8 text-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-start">
+    <nav className="w-full p-8 text-lg">
+      <div className="mx-auto flex max-w-7xl items-center justify-between">
         {/* Navigation Links */}
         <div className="flex gap-12">
           {navItems.map((item) => (
@@ -27,6 +27,9 @@ export default function Navigation() {
             </Link>
           ))}
         </div>
+        <Link href="/" className="flex gap-12 text-3xl font-bold">
+          KITSOLANO
+        </Link>
       </div>
     </nav>
   );
