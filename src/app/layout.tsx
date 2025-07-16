@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import Navigation from "../components/Navigation";
+import { Tinos } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const tinos = Tinos({
+  variable: "--font-tinos",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
-  title: "Kitsolano Bollagio",
-  description: "All the things that Kit gets up to.",
+  title: "Kit - Ceramic Art & Design",
+  description:
+    "Handcrafted ceramic pieces by Kit, a designer based in Brooklyn, NY.",
 };
 
 export default function RootLayout({
@@ -26,25 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${tinos.className} text-primary flex min-h-screen flex-col antialiased`}
       >
-        <nav className="fixed top-0 right-0 left-0 mx-8 flex items-center justify-between gap-2 py-8 transition-[margin] duration-300 ease-in-out sm:mx-16 lg:mx-48">
-          <Link className="font-bold" href="/">
-            KITSOLANO BOLLAGIO
-          </Link>
-          <div className="flex gap-4">
-            <Link className="hover:text-red-300 hover:italic" href="/catalog">
-              Catalog
-            </Link>
-            <Link className="hover:text-red-300 hover:italic" href="/about">
-              About
-            </Link>
-            <Link className="hover:text-red-300 hover:italic" href="/contact">
-              Contact
-            </Link>
-          </div>
-        </nav>
-        {children}
+        <Navigation />
+        <main className="p-8">{children}</main>
       </body>
     </html>
   );
