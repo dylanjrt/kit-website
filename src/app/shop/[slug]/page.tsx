@@ -3,11 +3,12 @@ import Link from "next/link";
 import ImageGallery from "../../../components/ImageGallery";
 
 interface ItemPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function ItemPage({ params }: ItemPageProps) {
-  const item = await getSingleItem(params.slug);
+  const { slug } = await params;
+  const item = await getSingleItem(slug);
 
   if (!item) {
     return (

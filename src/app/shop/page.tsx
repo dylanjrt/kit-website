@@ -31,14 +31,15 @@ interface Item {
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: { category?: string };
+  searchParams: Promise<{ category?: string }>;
 }) {
+  const { category } = await searchParams;
   const [items, categories] = await Promise.all([
     getAllItems(),
     getAllCategories(),
   ]);
 
-  const selectedCategory = searchParams.category;
+  const selectedCategory = category;
   const filteredItems = selectedCategory
     ? items.filter(
         (item: Item) => item.category?.slug?.current === selectedCategory,
