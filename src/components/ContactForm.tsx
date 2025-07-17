@@ -8,10 +8,6 @@ export default function ContactForm() {
     subject: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -24,37 +20,14 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      // Simulate form submission (replace with actual API call)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Reset form
-      setFormData({
-        name: "",
-        subject: "",
-        message: "",
-      });
-      setSubmitStatus("success");
-    } catch (_error) {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="space-y-6">
         {/* Name */}
         <div>
           <label
             htmlFor="name"
-            className="text-secondary mb-2 block font-serif text-sm"
+            className="text-secondary text-md mb-2 block font-serif"
           >
             Name *
           </label>
@@ -66,7 +39,6 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             className="border-border-color bg-background-color text-secondary focus:border-primary-text w-full border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
-            disabled={isSubmitting}
           />
         </div>
 
@@ -74,7 +46,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="subject"
-            className="text-secondary mb-2 block font-serif text-sm"
+            className="text-secondary text-md mb-2 block font-serif"
           >
             Subject
           </label>
@@ -84,7 +56,6 @@ export default function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             className="border-border-color bg-background-color text-secondary focus:border-primary-text w-full border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
-            disabled={isSubmitting}
           >
             <option value="">Select a subject</option>
             <option value="custom-order" data-label="Custom Order">
@@ -106,7 +77,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="text-secondary mb-2 block font-serif text-sm"
+            className="text-secondary text-md mb-2 block font-serif"
           >
             Message *
           </label>
@@ -117,26 +88,12 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             rows={6}
-            className="border-border-color bg-background-color text-secondary focus:border-primary-text w-full resize-none border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
-            disabled={isSubmitting}
+            className="border-border-color bg-background-color text-secondary focus:border-primary-text placeholder:text-md w-full resize-none border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
             placeholder="Tell us about your inquiry..."
           />
         </div>
 
-        {/* Submit Status */}
-        {submitStatus === "success" && (
-          <div className="border border-green-200 bg-green-50 p-4 font-serif text-green-800">
-            Thank you for your message! We&apos;ll get back to you soon.
-          </div>
-        )}
-
-        {submitStatus === "error" && (
-          <div className="border border-red-200 bg-red-50 p-4 font-serif text-red-800">
-            There was an error sending your message. Please try again.
-          </div>
-        )}
-
-        {/* Submit Button */}
+        {/* Email Button */}
         <a
           href={`mailto:bollag.miller@gmail.com?subject=${encodeURIComponent(formData.subject || "Inquiry")}&body=${encodeURIComponent(`${formData.message}\n\n ${formData.name || ""}`)}`}
           className="text-secondary hover:bg-primary hover:text-background border-primary inline-block cursor-pointer border px-6 py-3 text-center font-serif disabled:cursor-not-allowed disabled:opacity-50"
@@ -150,7 +107,7 @@ export default function ContactForm() {
         >
           Generate Email Draft
         </a>
-      </form>
+      </div>
     </div>
   );
 }
