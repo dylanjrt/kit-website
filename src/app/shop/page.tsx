@@ -48,9 +48,9 @@ export default async function ShopPage({
 
   return (
     <div className="bg-background-color min-h-screen">
-      <main className="container mx-auto px-4 pb-16 sm:px-6 lg:px-8">
+      <main className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         {/* Category Filters */}
-        <div className="mb-8">
+        <div className="mb-6 lg:mb-8">
           <CategoryFilter
             categories={categories}
             selectedCategory={selectedCategory}
@@ -58,14 +58,14 @@ export default async function ShopPage({
         </div>
 
         {/* Main Content */}
-        <div className="space-y-12 lg:space-y-16">
+        <div className="space-y-8 lg:space-y-12">
           {/* Product Grid */}
           {filteredItems.length > 0 ? (
             <section>
               <ProductGrid items={filteredItems} />
             </section>
           ) : (
-            <div className="py-16 text-center">
+            <div className="py-12 text-center lg:py-16">
               <p className="text-secondary text-md font-serif">
                 No items found in this category.
               </p>

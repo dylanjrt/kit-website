@@ -38,9 +38,9 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
   return (
     <div className="bg-background-color min-h-screen">
-      <main className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <main className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         {/* Back Button */}
-        <div className="mb-8">
+        <div className="mb-6 lg:mb-8">
           <Link
             href="/shop"
             className="text-primary hover:text-secondary inline-flex items-center space-x-2 font-serif transition-colors duration-200"
@@ -63,9 +63,9 @@ export default async function ItemPage({ params }: ItemPageProps) {
         </div>
 
         {/* Item Details */}
-        <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
+        <div className="space-y-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-12 lg:space-y-0">
           {/* Images */}
-          <div className="mb-8 lg:mb-0">
+          <div className="lg:mb-0">
             {item.images && item.images.length > 0 && (
               <ImageGallery images={item.images} title={item.title} />
             )}
@@ -73,9 +73,9 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
           {/* Item Information */}
           <div className="space-y-6">
-            <div className="flex w-1/2 items-start justify-between">
-              <div>
-                <h1 className="text-primary mb-2 font-serif text-2xl">
+            <div className="flex flex-col space-y-4 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
+              <div className="flex-1">
+                <h1 className="text-primary mb-2 font-serif text-xl lg:text-2xl">
                   {item.title}
                 </h1>
                 {item.category && (
@@ -86,21 +86,21 @@ export default async function ItemPage({ params }: ItemPageProps) {
               </div>
               <a
                 href={`mailto:${artist?.email}?subject=Inquiry about "${encodeURIComponent(item.title)}"`}
-                className="border-secondary hover:bg-secondary hover:text-background flex cursor-pointer items-center space-x-2 border px-3 py-1 font-serif"
+                className="border-secondary hover:bg-secondary hover:text-background flex w-fit cursor-pointer items-center justify-center space-x-2 border px-4 py-2 font-serif text-sm lg:px-3 lg:py-1 lg:text-base"
               >
                 <span>Inquire</span>
               </a>
             </div>
 
             {item.price && (
-              <p className="text-primary font-serif text-xl">
+              <p className="text-primary font-serif text-lg lg:text-xl">
                 {formatPrice(item.price, item.currency || "USD")}
               </p>
             )}
 
             {item.description && (
               <div>
-                <h2 className="text-primary mb-2 font-serif text-lg">
+                <h2 className="text-primary mb-2 font-serif text-base lg:text-lg">
                   Description
                 </h2>
                 <p className="text-primary font-serif text-sm leading-relaxed">
@@ -111,7 +111,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
             {/* Specifications */}
             <div className="space-y-4">
-              <h2 className="text-primary font-serif text-lg">
+              <h2 className="text-primary font-serif text-base lg:text-lg">
                 Specifications
               </h2>
               <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
@@ -162,7 +162,9 @@ export default async function ItemPage({ params }: ItemPageProps) {
             {/* Tags */}
             {item.tags && item.tags.length > 0 && (
               <div>
-                <h2 className="text-primary mb-2 font-serif text-lg">Tags</h2>
+                <h2 className="text-primary mb-2 font-serif text-base lg:text-lg">
+                  Tags
+                </h2>
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map((tag: string, index: number) => (
                     <span

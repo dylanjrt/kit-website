@@ -23,10 +23,10 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 lg:space-y-4">
       {/* Main Image */}
       {images[selectedImageIndex] && (
-        <div className="aspect-[3/4] overflow-hidden">
+        <div className="aspect-[4/5] overflow-hidden lg:aspect-[3/4]">
           <Image
             src={getImageUrl(images[selectedImageIndex], 800, 1000) || ""}
             alt={images[selectedImageIndex].alt || title}
@@ -39,7 +39,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
 
       {/* Thumbnail Grid */}
       {images.length > 1 && (
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-5 gap-1.5 lg:grid-cols-4 lg:gap-2">
           {images.map((image, index) => (
             <div
               key={index}

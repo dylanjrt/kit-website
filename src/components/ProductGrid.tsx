@@ -38,7 +38,7 @@ export default function ProductGrid({ items }: ProductGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-18 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
       {items.map((item) => (
         <Link
           key={item._id}
@@ -47,7 +47,7 @@ export default function ProductGrid({ items }: ProductGridProps) {
         >
           {/* Product Image */}
           {item.images?.[0] && (
-            <div className="relative mb-4 aspect-[4/5] overflow-hidden">
+            <div className="relative mb-3 aspect-[4/5] overflow-hidden lg:mb-4">
               {/* First Image (Base) */}
               <Image
                 src={getImageUrl(item.images[0], 300, 375) || ""}
@@ -57,25 +57,25 @@ export default function ProductGrid({ items }: ProductGridProps) {
                 className="h-full w-full object-cover transition-opacity duration-300"
               />
 
-              {/* Second Image (Hover) */}
+              {/* Second Image (Hover) - Only on desktop */}
               {item.images?.[1] && (
                 <Image
                   src={getImageUrl(item.images[1], 300, 375) || ""}
                   alt={item.images[1].alt || item.title}
                   width={300}
                   height={375}
-                  className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="absolute inset-0 hidden h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 lg:block"
                 />
               )}
             </div>
           )}
 
           {/* Product Info */}
-          <div className="space-y-2">
-            <h3 className="text-secondary group-hover:text-primary font-serif text-sm font-medium transition-colors duration-200">
+          <div className="space-y-1 lg:space-y-2">
+            <h3 className="text-secondary group-hover:text-primary font-serif text-xs font-medium transition-colors duration-200 lg:text-sm">
               {item.title}
             </h3>
-            <p className="text-secondary group-hover:text-primary font-serif text-sm">
+            <p className="text-secondary group-hover:text-primary font-serif text-xs lg:text-sm">
               {formatPrice(item.price, item.currency)}
             </p>
           </div>
