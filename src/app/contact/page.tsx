@@ -9,11 +9,11 @@ export default async function ContactPage() {
   return (
     <div className="bg-background-color min-h-screen">
       {/* Main Content */}
-      <div className="mx-auto max-w-7xl pb-20">
-        <div className="flex flex-col gap-20 lg:flex-row lg:items-start">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-20">
           {/* About Section */}
-          <div className="max-w-2/3 space-y-8 pt-6 lg:w-1/2">
-            <div className="text-secondary text-md space-y-6 font-serif leading-relaxed">
+          <div className="space-y-6 lg:w-1/2 lg:space-y-8">
+            <div className="text-secondary lg:text-md space-y-4 font-serif text-sm leading-relaxed lg:space-y-6">
               <p>
                 Inquire about custom pieces, collaborations, or simply learn
                 more about the work. Each piece is thoughtfully crafted in the
@@ -38,7 +38,7 @@ export default async function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <div className="max-w-2/3 lg:w-1/2">
+          <div className="lg:w-1/2">
             <ContactForm artist={artist} />
           </div>
         </div>
