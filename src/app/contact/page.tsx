@@ -39,7 +39,7 @@ export default async function ContactPage() {
 
           {/* Contact Form */}
           <div className="max-w-2/3 lg:w-1/2">
-            <ContactForm />
+            <ContactForm artist={artist} />
           </div>
         </div>
       </div>

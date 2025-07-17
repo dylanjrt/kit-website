@@ -1,4 +1,4 @@
-import { getSingleItem } from "../../../sanity/queries";
+import { getArtist, getSingleItem } from "../../../sanity/queries";
 import Link from "next/link";
 import ImageGallery from "../../../components/ImageGallery";
 
@@ -9,6 +9,7 @@ interface ItemPageProps {
 export default async function ItemPage({ params }: ItemPageProps) {
   const { slug } = await params;
   const item = await getSingleItem(slug);
+  const artist = await getArtist();
 
   if (!item) {
     return (
@@ -84,8 +85,8 @@ export default async function ItemPage({ params }: ItemPageProps) {
                 )}
               </div>
               <a
-                href={`mailto:bollag.miller@gmail.com?subject=Inquiry about "${encodeURIComponent(item.title)}"`}
-                className="border-primary hover:bg-primary hover:text-background flex cursor-pointer items-center space-x-2 border px-3 py-1 font-serif"
+                href={`mailto:${artist?.email}?subject=Inquiry about "${encodeURIComponent(item.title)}"`}
+                className="border-secondary hover:bg-secondary hover:text-background flex cursor-pointer items-center space-x-2 border px-3 py-1 font-serif"
               >
                 <span>Inquire</span>
               </a>
