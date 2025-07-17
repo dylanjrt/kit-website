@@ -47,14 +47,26 @@ export default function ProductGrid({ items }: ProductGridProps) {
         >
           {/* Product Image */}
           {item.images?.[0] && (
-            <div className="mb-4 aspect-[4/5] overflow-hidden">
+            <div className="relative mb-4 aspect-[4/5] overflow-hidden">
+              {/* First Image (Base) */}
               <Image
                 src={getImageUrl(item.images[0], 300, 375) || ""}
                 alt={item.images[0].alt || item.title}
                 width={300}
                 height={375}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="h-full w-full object-cover transition-opacity duration-300"
               />
+
+              {/* Second Image (Hover) */}
+              {item.images?.[1] && (
+                <Image
+                  src={getImageUrl(item.images[1], 300, 375) || ""}
+                  alt={item.images[1].alt || item.title}
+                  width={300}
+                  height={375}
+                  className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                />
+              )}
             </div>
           )}
 
