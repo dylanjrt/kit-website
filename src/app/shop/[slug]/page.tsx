@@ -117,7 +117,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
               <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
                 {item.materials && (
                   <div>
-                    <span className="text-primary font-serif font-medium">
+                    <span className="text-secondary font-serif font-medium">
                       Materials:
                     </span>
                     <p className="text-primary font-serif">
@@ -129,7 +129,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
                 )}
                 {item.dimensions && (
                   <div>
-                    <span className="text-primary font-serif font-medium">
+                    <span className="text-secondary font-serif font-medium">
                       Dimensions:
                     </span>
                     <p className="text-primary font-serif">
@@ -142,7 +142,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
                 )}
                 {item.technique && (
                   <div>
-                    <span className="text-primary font-serif font-medium">
+                    <span className="text-secondary font-serif font-medium">
                       Technique:
                     </span>
                     <p className="text-primary font-serif">{item.technique}</p>
@@ -150,7 +150,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
                 )}
                 {item.firing && (
                   <div>
-                    <span className="text-primary font-serif font-medium">
+                    <span className="text-secondary font-serif font-medium">
                       Firing:
                     </span>
                     <p className="text-primary font-serif">{item.firing}</p>
