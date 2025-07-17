@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getImageUrl } from "../../lib/sanity-image";
 
 export default async function ContactPage() {
-  const [artist, settings] = await Promise.all([getArtist(), getSettings()]);
+  const [artist] = await Promise.all([getArtist(), getSettings()]);
 
   return (
     <div className="bg-background-color min-h-screen">

@@ -3,11 +3,35 @@ import { client } from "../sanity/lib/client";
 
 const builder = imageUrlBuilder(client);
 
-export function urlFor(source: any) {
+interface SanityImageSource {
+  _type: string;
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+  hotspot?: {
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+  };
+  crop?: {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+  };
+}
+
+export function urlFor(source: SanityImageSource) {
   return builder.image(source);
 }
 
-export function getImageUrl(source: any, width: number = 800, height?: number) {
+export function getImageUrl(
+  source: SanityImageSource | null | undefined,
+  width: number = 800,
+  height?: number,
+) {
   if (!source) return null;
 
   const url = urlFor(source);
@@ -20,7 +44,7 @@ export function getImageUrl(source: any, width: number = 800, height?: number) {
 }
 
 export function getImageUrlWithHotspot(
-  source: any,
+  source: SanityImageSource | null | undefined,
   width: number = 800,
   height?: number,
 ) {

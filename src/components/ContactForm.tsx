@@ -40,7 +40,7 @@ export default function ContactForm() {
         message: "",
       });
       setSubmitStatus("success");
-    } catch (error) {
+    } catch (_error) {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -126,7 +126,7 @@ export default function ContactForm() {
         {/* Submit Status */}
         {submitStatus === "success" && (
           <div className="border border-green-200 bg-green-50 p-4 font-serif text-green-800">
-            Thank you for your message! We'll get back to you soon.
+            Thank you for your message! We&apos;ll get back to you soon.
           </div>
         )}
 
