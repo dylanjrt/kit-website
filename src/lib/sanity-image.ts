@@ -4,7 +4,6 @@ import { client } from "../sanity/lib/client";
 const builder = imageUrlBuilder(client);
 
 interface SanityImageSource {
-  _type: string;
   asset: {
     _ref: string;
     _type: string;
