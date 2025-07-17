@@ -10,9 +10,9 @@ export default async function ContactPage() {
     <div className="bg-background-color min-h-screen">
       {/* Main Content */}
       <div className="mx-auto max-w-7xl pb-20">
-        <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
+        <div className="flex flex-col gap-20 lg:flex-row lg:items-start">
           {/* About Section */}
-          <div className="space-y-8 pt-6">
+          <div className="max-w-2/3 space-y-8 pt-6 lg:w-1/2">
             <div className="text-secondary text-md space-y-6 font-serif leading-relaxed">
               <p>
                 Inquire about custom pieces, collaborations, or simply learn
@@ -31,12 +31,14 @@ export default async function ContactPage() {
                 alt={artist?.name}
                 width={500}
                 height={500}
+                className="hidden lg:block"
+                priority
               />
             </div>
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div className="max-w-2/3 lg:w-1/2">
             <ContactForm />
           </div>
         </div>
