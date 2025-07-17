@@ -1,8 +1,9 @@
 "use client";
 
+import { Artist } from "@/sanity.types";
 import { useState } from "react";
 
-export default function ContactForm() {
+export default function ContactForm({ artist }: { artist: Artist }) {
   const [formData, setFormData] = useState({
     name: "",
     subject: "",
@@ -95,7 +96,7 @@ export default function ContactForm() {
 
         {/* Email Button */}
         <a
-          href={`mailto:bollag.miller@gmail.com?subject=${encodeURIComponent(formData.subject || "Inquiry")}&body=${encodeURIComponent(`${formData.message}\n\n ${formData.name || ""}`)}`}
+          href={`mailto:${artist.email}?subject=${encodeURIComponent(formData.subject || "Inquiry")}&body=${encodeURIComponent(`${formData.message}\n\n ${formData.name || ""}`)}`}
           className="text-secondary hover:bg-secondary hover:text-background border-primary inline-block cursor-pointer border px-6 py-3 text-center font-serif disabled:cursor-not-allowed disabled:opacity-50"
           target="_blank"
           rel="noopener noreferrer"
