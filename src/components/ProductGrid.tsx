@@ -30,7 +30,7 @@ export default function ProductGrid({ items }: ProductGridProps) {
   if (items.length === 0) {
     return (
       <div className="py-8 text-center">
-        <p className="text-primary-text font-serif text-sm">
+        <p className="text-primary font-serif text-sm">
           No additional items available.
         </p>
       </div>
@@ -60,10 +60,10 @@ export default function ProductGrid({ items }: ProductGridProps) {
 
           {/* Product Info */}
           <div className="space-y-2">
-            <h3 className="text-primary-text group-hover:text-secondary-text font-serif text-sm font-medium transition-colors duration-200">
+            <h3 className="text-primary group-hover:text-secondary font-serif text-sm font-medium transition-colors duration-200">
               {item.title}
             </h3>
-            <p className="text-primary-text font-serif text-sm">
+            <p className="text-primary font-serif text-sm">
               {formatPrice(item.price, item.currency)}
             </p>
           </div>

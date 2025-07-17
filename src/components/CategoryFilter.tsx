@@ -31,13 +31,13 @@ export default function CategoryFilter({
   };
 
   return (
-    <div className="text-primary-text flex space-x-6 font-serif">
+    <div className="text-secondary flex space-x-6 font-serif">
       <Link
         href={`/shop?${createQueryString(null)}`}
         className={`pr-12 transition-colors duration-200 ${
           !selectedCategory
             ? "decoration-primary underline underline-offset-4"
-            : "hover:text-secondary"
+            : "hover:text-primary"
         }`}
       >
         All
@@ -50,7 +50,7 @@ export default function CategoryFilter({
           className={`transition-colors duration-200 ${
             selectedCategory === category.slug.current
               ? "decoration-primary underline underline-offset-4"
-              : "hover:text-secondary"
+              : "hover:text-primary"
           }`}
         >
           {category.title}

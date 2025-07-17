@@ -14,12 +14,12 @@ export default async function ItemPage({ params }: ItemPageProps) {
     return (
       <div className="bg-background-color flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <h1 className="text-primary-text mb-4 font-serif text-xl">
+          <h1 className="text-primary mb-4 font-serif text-xl">
             Item not found
           </h1>
           <Link
             href="/shop"
-            className="text-primary-text hover:text-secondary-text font-serif transition-colors duration-200"
+            className="text-primary hover:text-secondary font-serif transition-colors duration-200"
           >
             ← Back to Shop
           </Link>
@@ -42,7 +42,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
         <div className="mb-8">
           <Link
             href="/shop"
-            className="text-primary-text hover:text-secondary-text inline-flex items-center space-x-2 font-serif transition-colors duration-200"
+            className="text-primary hover:text-secondary inline-flex items-center space-x-2 font-serif transition-colors duration-200"
           >
             <svg
               className="h-4 w-4"
@@ -74,11 +74,11 @@ export default async function ItemPage({ params }: ItemPageProps) {
           <div className="space-y-6">
             <div className="flex w-1/2 items-start justify-between">
               <div>
-                <h1 className="text-primary-text mb-2 font-serif text-2xl">
+                <h1 className="text-primary mb-2 font-serif text-2xl">
                   {item.title}
                 </h1>
                 {item.category && (
-                  <p className="text-primary-text font-serif text-sm opacity-75">
+                  <p className="text-primary font-serif text-sm opacity-75">
                     {item.category.title}
                   </p>
                 )}
@@ -92,17 +92,17 @@ export default async function ItemPage({ params }: ItemPageProps) {
             </div>
 
             {item.price && (
-              <p className="text-primary-text font-serif text-xl">
+              <p className="text-primary font-serif text-xl">
                 {formatPrice(item.price, item.currency || "USD")}
               </p>
             )}
 
             {item.description && (
               <div>
-                <h2 className="text-primary-text mb-2 font-serif text-lg">
+                <h2 className="text-primary mb-2 font-serif text-lg">
                   Description
                 </h2>
-                <p className="text-primary-text font-serif text-sm leading-relaxed">
+                <p className="text-primary font-serif text-sm leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -110,16 +110,16 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
             {/* Specifications */}
             <div className="space-y-4">
-              <h2 className="text-primary-text font-serif text-lg">
+              <h2 className="text-primary font-serif text-lg">
                 Specifications
               </h2>
               <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
                 {item.materials && (
                   <div>
-                    <span className="text-primary-text font-serif font-medium">
+                    <span className="text-primary font-serif font-medium">
                       Materials:
                     </span>
-                    <p className="text-primary-text font-serif">
+                    <p className="text-primary font-serif">
                       {Array.isArray(item.materials)
                         ? item.materials.filter(Boolean).join(", ")
                         : item.materials}
@@ -128,10 +128,10 @@ export default async function ItemPage({ params }: ItemPageProps) {
                 )}
                 {item.dimensions && (
                   <div>
-                    <span className="text-primary-text font-serif font-medium">
+                    <span className="text-primary font-serif font-medium">
                       Dimensions:
                     </span>
-                    <p className="text-primary-text font-serif">
+                    <p className="text-primary font-serif">
                       {item.dimensions.height &&
                         `H: ${item.dimensions.height}"`}
                       {item.dimensions.width && ` W: ${item.dimensions.width}"`}
@@ -141,22 +141,18 @@ export default async function ItemPage({ params }: ItemPageProps) {
                 )}
                 {item.technique && (
                   <div>
-                    <span className="text-primary-text font-serif font-medium">
+                    <span className="text-primary font-serif font-medium">
                       Technique:
                     </span>
-                    <p className="text-primary-text font-serif">
-                      {item.technique}
-                    </p>
+                    <p className="text-primary font-serif">{item.technique}</p>
                   </div>
                 )}
                 {item.firing && (
                   <div>
-                    <span className="text-primary-text font-serif font-medium">
+                    <span className="text-primary font-serif font-medium">
                       Firing:
                     </span>
-                    <p className="text-primary-text font-serif">
-                      {item.firing}
-                    </p>
+                    <p className="text-primary font-serif">{item.firing}</p>
                   </div>
                 )}
               </div>
@@ -165,14 +161,12 @@ export default async function ItemPage({ params }: ItemPageProps) {
             {/* Tags */}
             {item.tags && item.tags.length > 0 && (
               <div>
-                <h2 className="text-primary-text mb-2 font-serif text-lg">
-                  Tags
-                </h2>
+                <h2 className="text-primary mb-2 font-serif text-lg">Tags</h2>
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map((tag: string, index: number) => (
                     <span
                       key={index}
-                      className="text-primary-text border-primary-text rounded-full border px-3 py-1 font-serif text-xs"
+                      className="text-primary border-primary-text rounded-full border px-3 py-1 font-serif text-xs"
                     >
                       {tag}
                     </span>

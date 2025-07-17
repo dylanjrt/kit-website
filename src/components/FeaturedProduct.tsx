@@ -53,17 +53,17 @@ export default function FeaturedProduct({ item }: FeaturedProductProps) {
       {/* Product Info */}
       <div className="space-y-4">
         <Link href={`/shop/${item.slug.current}`} className="group block">
-          <h2 className="text-primary-text group-hover:text-secondary-text font-serif text-xl transition-colors duration-200">
+          <h2 className="text-primary group-hover:text-secondary font-serif text-xl transition-colors duration-200">
             {item.title}
           </h2>
         </Link>
 
-        <p className="text-primary-text font-serif text-lg">
+        <p className="text-primary font-serif text-lg">
           {formatPrice(item.price, item.currency)}
         </p>
 
         {/* Product Specifications */}
-        <div className="text-primary-text space-y-2 font-serif text-sm">
+        <div className="text-primary space-y-2 font-serif text-sm">
           {item.materials?.[0] && <p>Glaze: {item.materials[0]}</p>}
           {item.dimensions?.height && (
             <p>Height: {item.dimensions.height}&quot;</p>
@@ -74,7 +74,7 @@ export default function FeaturedProduct({ item }: FeaturedProductProps) {
         </div>
 
         {/* Inquire Button */}
-        <button className="text-primary-text hover:text-secondary-text flex items-center space-x-2 font-serif transition-colors duration-200">
+        <button className="text-primary hover:text-secondary flex items-center space-x-2 font-serif transition-colors duration-200">
           <span>Inquire</span>
           <svg
             className="h-4 w-4"

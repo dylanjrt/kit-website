@@ -55,7 +55,7 @@ export default async function HomePage() {
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-secondary-text transition-colors hover:underline"
+                          className="hover:text-secondary transition-colors hover:underline"
                         >
                           {displayUrl}
                         </a>

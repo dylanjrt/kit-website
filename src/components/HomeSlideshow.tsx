@@ -37,7 +37,7 @@ export default function HomeSlideshow({ items }: HomeSlideshowProps) {
 
   if (!currentItem) {
     return (
-      <div className="text-primary-text font-serif">
+      <div className="text-primary font-serif">
         No items available for slideshow.
       </div>
     );

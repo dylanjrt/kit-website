@@ -66,7 +66,7 @@ export default async function ShopPage({
             </section>
           ) : (
             <div className="py-16 text-center">
-              <p className="text-primary-text font-serif text-lg">
+              <p className="text-secondary text-md font-serif">
                 No items found in this category.
               </p>
             </div>

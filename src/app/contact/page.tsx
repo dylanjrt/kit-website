@@ -13,7 +13,7 @@ export default async function ContactPage() {
         <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
           {/* About Section */}
           <div className="space-y-8 pt-6">
-            <div className="text-primary-text space-y-6 font-serif text-lg leading-relaxed">
+            <div className="text-secondary text-md space-y-6 font-serif leading-relaxed">
               <p>
                 Inquire about custom pieces, collaborations, or simply learn
                 more about the work. Each piece is thoughtfully crafted in the

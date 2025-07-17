@@ -54,7 +54,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="name"
-            className="text-primary-text mb-2 block font-serif text-sm"
+            className="text-secondary mb-2 block font-serif text-sm"
           >
             Name *
           </label>
@@ -65,7 +65,7 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="border-border-color bg-background-color text-primary-text focus:border-primary-text w-full border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
+            className="border-border-color bg-background-color text-secondary focus:border-primary-text w-full border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
             disabled={isSubmitting}
           />
         </div>
@@ -74,7 +74,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="subject"
-            className="text-primary-text mb-2 block font-serif text-sm"
+            className="text-secondary mb-2 block font-serif text-sm"
           >
             Subject
           </label>
@@ -83,7 +83,7 @@ export default function ContactForm() {
             name="subject"
             value={formData.subject}
             onChange={handleChange}
-            className="border-border-color bg-background-color text-primary-text focus:border-primary-text w-full border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
+            className="border-border-color bg-background-color text-secondary focus:border-primary-text w-full border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
             disabled={isSubmitting}
           >
             <option value="">Select a subject</option>
@@ -106,7 +106,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="message"
-            className="text-primary-text mb-2 block font-serif text-sm"
+            className="text-secondary mb-2 block font-serif text-sm"
           >
             Message *
           </label>
@@ -117,7 +117,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             rows={6}
-            className="border-border-color bg-background-color text-primary-text focus:border-primary-text w-full resize-none border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
+            className="border-border-color bg-background-color text-secondary focus:border-primary-text w-full resize-none border px-4 py-3 font-serif transition-colors duration-200 focus:outline-none"
             disabled={isSubmitting}
             placeholder="Tell us about your inquiry..."
           />
@@ -139,7 +139,7 @@ export default function ContactForm() {
         {/* Submit Button */}
         <a
           href={`mailto:bollag.miller@gmail.com?subject=${encodeURIComponent(formData.subject || "Inquiry")}&body=${encodeURIComponent(`${formData.message}\n\n ${formData.name || ""}`)}`}
-          className="text-primary hover:bg-primary hover:text-background border-primary inline-block cursor-pointer border px-6 py-3 text-center font-serif disabled:cursor-not-allowed disabled:opacity-50"
+          className="text-secondary hover:bg-primary hover:text-background border-primary inline-block cursor-pointer border px-6 py-3 text-center font-serif disabled:cursor-not-allowed disabled:opacity-50"
           target="_blank"
           rel="noopener noreferrer"
           tabIndex={0}
