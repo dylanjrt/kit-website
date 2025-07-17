@@ -3,8 +3,9 @@
 :root {
   --background: #FAF8EC;
   --background-secondary: #d08b3c;
-  --text-accent: #89d159;
+  --text-accent: #5a3f52;
   --text-primary: #643600;
+  --text-secondary: #7b6042;
 }
 
 @theme inline {
@@ -12,6 +13,7 @@
   --color-background-secondary: var(--background-secondary);
   --color-accent: var(--text-accent);
   --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
   --font-sans: var(--font-tinos);
   --font-mono: var(--font-tinos);
 }
