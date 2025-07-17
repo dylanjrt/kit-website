@@ -9,19 +9,61 @@ export default async function HomePage() {
 
   return (
     <div className="bg-background-color">
-      <div className="flex">
-        {/* Left Section - Artist Bio */}
-        <div className="flex w-1/2 justify-end p-8">
-          <div className="max-w-md">
-            <p className="text-primary-text font-serif text-lg leading-relaxed">
+      <div className="flex items-stretch justify-center">
+        {/* Left Section */}
+        <div className="flex w-1/4 flex-col items-start justify-start p-8">
+          {/* Artist Bio */}
+          <div className="w-full">
+            <p className="text-secondary text-md font-serif leading-relaxed">
               {artist?.shortBio}
             </p>
           </div>
         </div>
 
         {/* Right Section - Featured Item Slideshow */}
-        <div className="flex w-1/2 items-center justify-start p-8">
+        <div className="flex w-1/3 items-center justify-start p-8">
           <HomeSlideshow items={featuredItems || []} />
+        </div>
+
+        <div className="flex w-1/4 flex-col items-start justify-between p-8">
+          {/* Studio */}
+          <div className="w-full">
+            <h1 className="text-primary text-md pb-2 font-bold">STUDIO</h1>
+            <div className="text-secondary text-md font-serif leading-relaxed">
+              {artist?.location
+                ?.split("\n")
+                .map((line: string, index: number) => (
+                  <p key={index} className={index > 0 ? "mt-1" : ""}>
+                    {line}
+                  </p>
+                ))}
+            </div>
+          </div>
+          {/* Social Media */}
+          <div className="w-full">
+            <h1 className="text-primary text-md pb-2 font-bold">FOLLOW</h1>
+            <ul className="text-secondary text-md space-y-1 font-serif leading-relaxed">
+              {artist?.socialMedia &&
+                Object.entries(artist.socialMedia)
+                  .filter(([_, value]) => !!value)
+                  .map(([key, value]) => {
+                    const url = value as string;
+                    const displayUrl = url.replace(/^https?:\/\/(www\.)?/i, "");
+                    return (
+                      <li key={key}>
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-secondary-text transition-colors hover:underline"
+                        >
+                          {displayUrl}
+                        </a>
+                      </li>
+                    );
+                  })}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
