@@ -21,7 +21,7 @@ export default function Navigation() {
             <Link
               key={item.href}
               href={item.href}
-              className={`${pathname === item.href ? "font-bold" : ""}`}
+              className={`${pathname === item.href ? "font-bold" : ""} hover:italic`}
             >
               {item.label}
             </Link>

@@ -40,7 +40,7 @@ export default async function HomePage() {
             </div>
           </div>
           {/* Social Media */}
-          <div className="w-full">
+          <div className="w-full pb-24">
             <h1 className="text-primary text-md pb-2 font-bold">FOLLOW</h1>
             <ul className="text-secondary text-md space-y-1 font-serif leading-relaxed">
               {artist?.socialMedia &&

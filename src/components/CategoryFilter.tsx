@@ -34,10 +34,10 @@ export default function CategoryFilter({
     <div className="text-primary-text flex space-x-6 font-serif">
       <Link
         href={`/shop?${createQueryString(null)}`}
-        className={`transition-colors duration-200 ${
+        className={`pr-12 transition-colors duration-200 ${
           !selectedCategory
-            ? "decoration-primary-text underline underline-offset-4"
-            : "hover:text-secondary-text"
+            ? "decoration-primary underline underline-offset-4"
+            : "hover:text-secondary"
         }`}
       >
         All
@@ -49,8 +49,8 @@ export default function CategoryFilter({
           href={`/shop?${createQueryString(category.slug.current)}`}
           className={`transition-colors duration-200 ${
             selectedCategory === category.slug.current
-              ? "decoration-primary-text underline underline-offset-4"
-              : "hover:text-secondary-text"
+              ? "decoration-primary underline underline-offset-4"
+              : "hover:text-secondary"
           }`}
         >
           {category.title}

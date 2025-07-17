@@ -7,7 +7,7 @@ export default function Footer() {
           href="https://dylanrt.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline"
+          className="underline hover:italic"
         >
           Dylan RT
         </a>
