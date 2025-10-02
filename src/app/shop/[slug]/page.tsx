@@ -38,7 +38,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
   return (
     <div className="bg-background-color min-h-screen">
-      <main className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+      <main className="container mx-auto px-2 py-6 sm:px-4 lg:px-4 lg:py-8">
         {/* Back Button */}
         <div className="mb-6 lg:mb-8">
           <Link
@@ -63,7 +63,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
         </div>
 
         {/* Item Details */}
-        <div className="space-y-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-12 lg:space-y-0">
+        <div className="space-y-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-2 lg:space-y-0">
           {/* Images */}
           <div className="lg:mb-0">
             {item.images && item.images.length > 0 && (

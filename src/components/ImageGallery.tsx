@@ -26,7 +26,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
     <div className="space-y-3 lg:space-y-4">
       {/* Main Image */}
       {images[selectedImageIndex] && (
-        <div className="aspect-[4/5] overflow-hidden lg:aspect-[3/4]">
+        <div className="aspect-[4/5] max-h-150 overflow-hidden lg:aspect-[3/4]">
           <Image
             src={getImageUrl(images[selectedImageIndex], 800, 1000) || ""}
             alt={images[selectedImageIndex].alt || title}
@@ -39,11 +39,11 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
 
       {/* Thumbnail Grid */}
       {images.length > 1 && (
-        <div className="grid grid-cols-5 gap-1.5 lg:grid-cols-4 lg:gap-2">
+        <div className="flex flex-wrap gap-1.5 lg:gap-2">
           {images.map((image, index) => (
             <div
               key={index}
-              className={`aspect-square cursor-pointer overflow-hidden border-2 transition-all duration-200 ${
+              className={`aspect-square w-16 cursor-pointer overflow-hidden border-2 transition-all duration-200 lg:w-20 ${
                 index === selectedImageIndex
                   ? "border-primary-text"
                   : "hover:border-primary-text/50 border-transparent"
