@@ -19,7 +19,7 @@ export default function Navigation() {
       className={`${
         isHome
           ? "fixed inset-x-0 top-0 z-50 w-full p-4 lg:p-8"
-          : "bg-background fixed z-20 w-full p-4 lg:p-8"
+          : "bg-background w-full p-4 lg:p-8"
       }`}
     >
       <div className="mx-auto max-w-7xl">

@@ -9,7 +9,7 @@ export default async function ContactPage() {
 
   return (
     <div className="bg-background-color min-h-screen">
-      <div className="mx-auto max-w-7xl px-6 pt-28 pb-16 lg:px-8 lg:pt-36 lg:pb-24">
+      <div className="mx-auto max-w-7xl px-6 pt-28 pb-16 lg:px-8 lg:pb-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           {/* Left: Section label */}
           <div className="flex items-start lg:justify-start">
