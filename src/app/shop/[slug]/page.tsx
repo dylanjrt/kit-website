@@ -86,9 +86,9 @@ export default async function ItemPage({ params }: ItemPageProps) {
               </div>
               <a
                 href={`mailto:${artist?.email}?subject=Inquiry about "${encodeURIComponent(item.title)}"`}
-                className="border-secondary hover:bg-secondary hover:text-background flex w-fit cursor-pointer items-center justify-center space-x-2 border px-4 py-2 font-serif text-sm lg:px-3 lg:py-1 lg:text-base"
+                className="border-secondary hover:bg-secondary hover:text-background flex w-fit cursor-pointer items-center justify-center space-x-2 border px-4 py-2 font-serif text-sm tracking-widest hover:italic lg:px-3 lg:py-1 lg:text-base"
               >
-                <span>Inquire</span>
+                <span>INQUIRE</span>
               </a>
             </div>
 
