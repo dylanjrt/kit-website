@@ -28,24 +28,22 @@ export function urlFor(source: SanityImageSource) {
 
 export function getImageUrl(
   source: SanityImageSource | null | undefined,
-  width: number = 800,
+  width?: number,
   height?: number,
 ) {
   if (!source) return null;
 
-  const url = urlFor(source);
+  let builder = urlFor(source).auto("format").quality(85).format("webp");
 
-  if (height) {
-    return url
-      .width(width)
-      .height(height)
-      .fit("crop")
-      .auto("format")
-      .quality(85)
-      .url();
+  if (width && height) {
+    builder = builder.width(width).height(height).fit("crop");
+  } else if (width) {
+    builder = builder.width(width).fit("max");
+  } else if (height) {
+    builder = builder.height(height).fit("max");
   }
 
-  return url.width(width).fit("max").auto("format").quality(85).url();
+  return builder.url();
 }
 
 export function getImageUrlWithHotspot(
@@ -64,8 +62,15 @@ export function getImageUrlWithHotspot(
       .fit("crop")
       .auto("format")
       .quality(85)
+      .format("webp")
       .url();
   }
 
-  return url.width(width).fit("max").auto("format").quality(85).url();
+  return url
+    .width(width)
+    .fit("max")
+    .auto("format")
+    .quality(85)
+    .format("webp")
+    .url();
 }

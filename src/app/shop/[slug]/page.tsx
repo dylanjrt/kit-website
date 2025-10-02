@@ -38,7 +38,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
   return (
     <div className="bg-background-color min-h-screen">
-      <main className="container mx-auto px-2 py-6 sm:px-4 lg:px-4 lg:py-8">
+      <main className="container mx-auto px-2 py-6 sm:px-4 lg:px-4 lg:py-2">
         {/* Back Button */}
         <div className="mb-6 lg:mb-8">
           <Link
@@ -63,16 +63,16 @@ export default async function ItemPage({ params }: ItemPageProps) {
         </div>
 
         {/* Item Details */}
-        <div className="space-y-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-2 lg:space-y-0">
+        <div className="space-y-4 lg:flex lg:items-start lg:gap-8 lg:space-y-0">
           {/* Images */}
-          <div className="lg:mb-0">
+          <div className="w-1/2">
             {item.images && item.images.length > 0 && (
               <ImageGallery images={item.images} title={item.title} />
             )}
           </div>
 
           {/* Item Information */}
-          <div className="space-y-6">
+          <div className="w-1/2 space-y-6">
             <div className="flex flex-col space-y-4 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
               <div className="flex-1">
                 <h1 className="text-primary mb-2 font-serif text-xl lg:text-2xl">
@@ -86,7 +86,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
               </div>
               <a
                 href={`mailto:${artist?.email}?subject=Inquiry about "${encodeURIComponent(item.title)}"`}
-                className="border-secondary hover:bg-secondary hover:text-background flex w-fit cursor-pointer items-center justify-center space-x-2 border px-4 py-2 font-serif text-sm tracking-widest hover:italic lg:px-3 lg:py-1 lg:text-base"
+                className="border-secondary hover:bg-secondary hover:text-background flex w-fit cursor-pointer items-center justify-center space-x-2 border py-2 font-serif text-sm tracking-widest hover:italic lg:px-3 lg:py-1 lg:text-base"
               >
                 <span>INQUIRE</span>
               </a>
