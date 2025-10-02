@@ -50,20 +50,22 @@ export default function ProductGrid({ items }: ProductGridProps) {
             <div className="relative mb-3 aspect-[4/5] overflow-hidden lg:mb-4">
               {/* First Image (Base) */}
               <Image
-                src={getImageUrl(item.images[0], 300, 375) || ""}
+                src={getImageUrl(item.images[0], 600, 750) || ""}
                 alt={item.images[0].alt || item.title}
-                width={300}
-                height={375}
+                width={600}
+                height={750}
+                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                 className="h-full w-full object-cover transition-opacity duration-300"
               />
 
               {/* Second Image (Hover) - Only on desktop */}
               {item.images?.[1] && (
                 <Image
-                  src={getImageUrl(item.images[1], 300, 375) || ""}
+                  src={getImageUrl(item.images[1], 600, 750) || ""}
                   alt={item.images[1].alt || item.title}
-                  width={300}
-                  height={375}
+                  width={600}
+                  height={750}
+                  sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
                   className="absolute inset-0 hidden h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 lg:block"
                 />
               )}

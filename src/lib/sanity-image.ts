@@ -36,10 +36,16 @@ export function getImageUrl(
   const url = urlFor(source);
 
   if (height) {
-    return url.width(width).height(height).fit("crop").url();
+    return url
+      .width(width)
+      .height(height)
+      .fit("crop")
+      .auto("format")
+      .quality(85)
+      .url();
   }
 
-  return url.width(width).fit("max").url();
+  return url.width(width).fit("max").auto("format").quality(85).url();
 }
 
 export function getImageUrlWithHotspot(
@@ -52,8 +58,14 @@ export function getImageUrlWithHotspot(
   const url = urlFor(source);
 
   if (height) {
-    return url.width(width).height(height).fit("crop").url();
+    return url
+      .width(width)
+      .height(height)
+      .fit("crop")
+      .auto("format")
+      .quality(85)
+      .url();
   }
 
-  return url.width(width).fit("max").url();
+  return url.width(width).fit("max").auto("format").quality(85).url();
 }
