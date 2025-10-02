@@ -1,8 +1,17 @@
 import Image from "next/image";
 import { urlFor } from "../sanity/lib/urlFor";
 
+interface SanityImage {
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+  alt?: string;
+  caption?: string;
+}
+
 interface HeroBackgroundProps {
-  image: any;
+  image: SanityImage;
   priority?: boolean;
 }
 
