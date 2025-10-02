@@ -196,6 +196,17 @@ export const navigationPagesQuery = groq`
   } | order(navigation.menuOrder asc)
 `;
 
+// Home page query
+export const homePageQuery = groq`
+  *[_type == "homePage"][0] {
+    _id,
+    title,
+    heroBackground{asset->, alt, caption},
+    intro,
+    seo
+  }
+`;
+
 // Settings queries
 export const settingsQuery = groq`
   *[_type == "settings"][0] {
@@ -253,6 +264,10 @@ export async function getPageBySlug(slug) {
 
 export async function getNavigationPages() {
   return await client.fetch(navigationPagesQuery);
+}
+
+export async function getHomePage() {
+  return await client.fetch(homePageQuery);
 }
 
 export async function getSettings() {
