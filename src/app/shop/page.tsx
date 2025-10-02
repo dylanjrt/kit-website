@@ -50,7 +50,7 @@ export default async function ShopPage({
     <div className="bg-background-color min-h-screen">
       <main className="container mx-auto px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         {/* Category Filters */}
-        <div className="mb-6 lg:mb-8">
+        <div className="text-primary mb-6 lg:mb-8">
           <CategoryFilter
             categories={categories}
             selectedCategory={selectedCategory}

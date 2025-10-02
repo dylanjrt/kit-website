@@ -26,7 +26,7 @@ export default function RootLayout({
         className={`${tinos.className} text-primary flex min-h-screen flex-col antialiased`}
       >
         <Navigation />
-        <main className="p-8">{children}</main>
+        <main className="p-0">{children}</main>
         <Footer />
       </body>
     </html>
