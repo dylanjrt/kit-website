@@ -26,7 +26,7 @@ export default function ImageGallery({ images, title }: ImageGalleryProps) {
     <div className="space-y-3 lg:space-y-4">
       {/* Main Image */}
       {images[selectedImageIndex] && (
-        <div className="aspect-[4/5] max-h-150 overflow-hidden lg:aspect-[3/4]">
+        <div className="aspect-[4/5] max-h-170 lg:aspect-[3/4]">
           <Image
             src={getImageUrl(images[selectedImageIndex], 800, 1000) || ""}
             alt={images[selectedImageIndex].alt || title}
