@@ -1,5 +1,7 @@
 import { getArtist, getHomePage } from "../sanity/queries";
 import HeroBackground from "../components/HeroBackground";
+import Image from "next/image";
+import { urlFor } from "../sanity/lib/urlFor";
 
 export default async function HomePage() {
   const [artist, home] = await Promise.all([getArtist(), getHomePage()]);
@@ -16,6 +18,30 @@ export default async function HomePage() {
           </p>
         </div>
       </div>
+
+      {/* Secondary Image */}
+      {home?.secondaryImage?.asset && (
+        <div className="mx-auto max-w-7xl px-6 pb-16 lg:px-8 lg:pb-24">
+          <div className="relative aspect-[16/9] w-full overflow-hidden">
+            <Image
+              src={urlFor(home.secondaryImage)
+                .width(2000)
+                .auto("format")
+                .quality(85)
+                .url()}
+              alt={home.secondaryImage.alt || "Secondary image"}
+              fill
+              sizes="(min-width: 1280px) 1200px, 100vw"
+              className="object-cover"
+            />
+          </div>
+          {home.secondaryImage.caption && (
+            <p className="text-secondary mt-3 text-sm">
+              {home.secondaryImage.caption}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -202,6 +202,7 @@ export const homePageQuery = groq`
     _id,
     title,
     heroBackground{asset->, alt, caption},
+    secondaryImage{asset->, alt, caption},
     intro,
     seo
   }
