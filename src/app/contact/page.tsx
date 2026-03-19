@@ -1,43 +1,76 @@
 import { getArtist } from "../../sanity/queries";
 
+export const revalidate = 3600;
+
 export default async function ContactPage() {
   const artist = await getArtist();
 
-  const addressLines = (artist?.location || "")
-    .split("\n")
-    .filter((l: string) => l.trim().length > 0);
+  const rows = [
+    artist?.location && { label: "Location", value: artist.location },
+    artist?.email && {
+      label: "Email",
+      value: artist.email,
+      href: `mailto:${artist.email}`,
+    },
+    artist?.phone && { label: "Phone", value: artist.phone },
+    artist?.socialMedia?.instagram && {
+      label: "Instagram",
+      value: artist.socialMedia.instagram.replace(/^https?:\/\/(www\.)?instagram\.com\/?/, "@"),
+      href: artist.socialMedia.instagram,
+      external: true,
+    },
+    artist?.socialMedia?.etsy && {
+      label: "Etsy",
+      value: "Shop",
+      href: artist.socialMedia.etsy,
+      external: true,
+    },
+  ].filter(Boolean) as Array<{
+    label: string;
+    value: string;
+    href?: string;
+    external?: boolean;
+  }>;
 
   return (
-    <div className="bg-background-color min-h-screen">
-      <div className="mx-auto max-w-7xl px-6 pt-28 pb-16 lg:px-8 lg:pb-24">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-          {/* Left: Section label */}
-          <div className="flex items-start lg:justify-start">
-            <h1 className="text-primary text-lg tracking-widest">CONTACT</h1>
-          </div>
-
-          {/* Right: Contact details */}
-          <div className="space-y-6 text-xl leading-relaxed tracking-widest lg:col-span-2">
-            <div className="space-y-2">
-              {addressLines.map((line: string, idx: number) => (
-                <p key={idx}>{line}</p>
-              ))}
-            </div>
-
-            {artist?.phone && <p className="pt-2">{artist.phone}</p>}
-            {artist?.email && (
-              <p>
-                <a
-                  href={`mailto:${artist.email}`}
-                  className="underline-offset-4 hover:underline"
-                >
-                  {artist.email}
-                </a>
-              </p>
-            )}
-          </div>
+    <div className="bg-[#F7F5F2] min-h-screen">
+      <main className="px-6 lg:px-8">
+        {/* Page heading */}
+        <div className="pt-10 pb-6">
+          <h1 className="text-4xl lg:text-5xl font-light text-[#111111] mb-8">
+            Contact
+          </h1>
         </div>
-      </div>
+
+        {/* Contact table */}
+        <div className="max-w-2xl">
+          {rows.map((row) => (
+            <div
+              key={row.label}
+              className="grid grid-cols-[8rem_1fr] gap-4 py-4 border-b border-[#E8E8E8] items-baseline"
+            >
+              <span className="text-sm text-[#777777]">
+                {row.label}
+              </span>
+              {row.href ? (
+                <a
+                  href={row.href}
+                  {...(row.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="text-base text-[#111111] hover:text-[#777777] transition-colors"
+                >
+                  {row.value}
+                </a>
+              ) : (
+                <span className="text-base text-[#111111] whitespace-pre-line">
+                  {row.value}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }

@@ -31,59 +31,30 @@ export default function CategoryFilter({
   };
 
   return (
-    <div className="text-secondary font-serif">
-      {/* Mobile: Horizontal scrollable */}
-      <div className="flex space-x-4 overflow-x-auto pb-2 lg:hidden">
+    <div className="pb-4 border-b border-[#E8E8E8]">
+      <div className="flex flex-wrap gap-6 text-sm">
         <Link
-          href={`/shop?${createQueryString(null)}`}
-          className={`whitespace-nowrap transition-colors duration-200 ${
+          href={`/collection?${createQueryString(null)}`}
+          className={`transition-colors duration-150 ${
             !selectedCategory
-              ? "decoration-primary underline underline-offset-4"
-              : "hover:text-primary"
+              ? "text-[#111111]"
+              : "text-[#777777] hover:text-[#111111]"
           }`}
         >
-          All
+          {!selectedCategory ? "• " : ""}All Categories
         </Link>
 
         {categories.map((category) => (
           <Link
             key={category._id}
-            href={`/shop?${createQueryString(category.slug.current)}`}
-            className={`whitespace-nowrap transition-colors duration-200 ${
+            href={`/collection?${createQueryString(category.slug.current)}`}
+            className={`transition-colors duration-150 ${
               selectedCategory === category.slug.current
-                ? "decoration-primary underline underline-offset-4"
-                : "hover:text-primary"
+                ? "text-[#111111]"
+                : "text-[#777777] hover:text-[#111111]"
             }`}
           >
-            {category.title}
-          </Link>
-        ))}
-      </div>
-
-      {/* Desktop: Original layout */}
-      <div className="hidden space-x-6 lg:flex">
-        <Link
-          href={`/shop?${createQueryString(null)}`}
-          className={`pr-12 transition-colors duration-200 ${
-            !selectedCategory
-              ? "decoration-primary underline underline-offset-4"
-              : "hover:text-primary"
-          }`}
-        >
-          All
-        </Link>
-
-        {categories.map((category) => (
-          <Link
-            key={category._id}
-            href={`/shop?${createQueryString(category.slug.current)}`}
-            className={`transition-colors duration-200 ${
-              selectedCategory === category.slug.current
-                ? "decoration-primary underline underline-offset-4"
-                : "hover:text-primary"
-            }`}
-          >
-            {category.title}
+            {selectedCategory === category.slug.current ? "• " : ""}{category.title}
           </Link>
         ))}
       </div>

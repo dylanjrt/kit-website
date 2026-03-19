@@ -9,6 +9,20 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/shop",
+        destination: "/collection",
+        permanent: true,
+      },
+      {
+        source: "/shop/:slug",
+        destination: "/collection/:slug",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

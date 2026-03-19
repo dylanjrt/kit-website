@@ -1,97 +1,63 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getImageUrl } from "../lib/sanity-image";
 import Image from "next/image";
 
-interface Image {
+interface GalleryImage {
   asset: { _ref: string; _type: string };
   alt?: string;
   caption?: string;
 }
 
 interface ImageGalleryProps {
-  images: Image[];
+  images: GalleryImage[];
   title: string;
 }
 
 export default function ImageGallery({ images, title }: ImageGalleryProps) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
-
-  const handleImageClick = (index: number) => {
-    setSelectedImageIndex(index);
-  };
-
-  // Preload all images for better performance
-  useEffect(() => {
-    const preloadImages = async () => {
-      const promises = images.map((image, index) => {
-        return new Promise<void>((resolve) => {
-          const img = new window.Image();
-          img.onload = () => {
-            setLoadedImages((prev) => new Set([...prev, index]));
-            resolve();
-          };
-          img.onerror = () => resolve(); // Still resolve to avoid hanging
-          img.src = getImageUrl(image) || "";
-        });
-      });
-
-      await Promise.all(promises);
-    };
-
-    preloadImages();
-  }, [images]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <div className="space-y-3 lg:space-y-4">
-      {/* Main Image */}
-      {images[selectedImageIndex] && (
-        <div className="relative max-w-2xl">
-          <Image
-            src={getImageUrl(images[selectedImageIndex]) || ""}
-            alt={images[selectedImageIndex].alt || title}
-            width={800}
-            height={600}
-            className={`h-auto w-full object-contain transition-opacity duration-300 ${
-              loadedImages.has(selectedImageIndex) ? "opacity-100" : "opacity-0"
-            }`}
-            priority={selectedImageIndex === 0}
-            quality={85}
-          />
-          {!loadedImages.has(selectedImageIndex) && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="loader"></div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Thumbnail Grid */}
-      {images.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 lg:gap-2">
+    <div className="flex gap-3">
+      {/* Thumbnails — right column */}
+      {images.length > 1 && (
+        <div className="flex flex-col gap-1.5 order-last">
           {images.map((image, index) => (
-            <div
+            <button
               key={index}
-              className={`aspect-square w-16 cursor-pointer overflow-hidden border-2 transition-all duration-200 lg:w-20 ${
-                index === selectedImageIndex
-                  ? "border-primary-text"
-                  : "hover:border-primary-text/50 border-transparent"
+              onClick={() => setSelectedIndex(index)}
+              className={`aspect-square w-14 lg:w-16 shrink-0 overflow-hidden border transition-all duration-200 bg-[#EEEBe7] ${
+                index === selectedIndex
+                  ? "border-[#111111]"
+                  : "border-transparent hover:border-[#E8E8E8]"
               }`}
-              onClick={() => handleImageClick(index)}
             >
               <Image
                 src={getImageUrl(image, 200, 200) || ""}
-                alt={image.alt || `${title} - Image ${index + 1}`}
+                alt={image.alt || `${title} — ${index + 1}`}
                 width={200}
                 height={200}
-                className="h-full w-full object-cover transition-transform duration-200 hover:scale-105"
-                loading="eager"
-                quality={75}
+                className="h-full w-full object-cover"
+                quality={70}
               />
-            </div>
+            </button>
           ))}
+        </div>
+      )}
+
+      {/* Main image */}
+      {images[selectedIndex] && (
+        <div className="flex-1 bg-[#EEEBe7]">
+          <Image
+            src={getImageUrl(images[selectedIndex], 1400) || ""}
+            alt={images[selectedIndex].alt || title}
+            width={1400}
+            height={1050}
+            className="h-auto w-full object-contain block"
+            priority={selectedIndex === 0}
+            quality={85}
+          />
         </div>
       )}
     </div>

@@ -1,43 +1,49 @@
 @import "tailwindcss";
 
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
-  --background: #FAF8EC;
-  --background-secondary: #d08b3c;
-  --text-accent: #5a3f52;
-  --text-primary: #2D2422;
-  --text-secondary: #534f4e;
+  --background: #F7F5F2;
+  --text-primary: #111111;
+  --text-secondary: #777777;
+  --hairline: #E8E5E1;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-background-secondary: var(--background-secondary);
-  --color-accent: var(--text-accent);
   --color-primary: var(--text-primary);
   --color-secondary: var(--text-secondary);
-  --font-sans: var(--font-tinos);
-  --font-mono: var(--font-tinos);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-dm-sans);
+  --font-mono: var(--font-dm-sans);
 }
 
 body {
-  background: var(--background);
-  color: var(--text-primary);
-  font-family: var(--font-georama);
+  background-color: #F7F5F2;
+  color: #111111;
+  font-family: var(--font-dm-sans);
 }
 
-.loader {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: animloader 1s linear infinite;
+
+/* Skeleton loading */
+@keyframes skeleton-shimmer {
+  0% { background-position: -400% 0; }
+  100% { background-position: 400% 0; }
 }
 
-@keyframes animloader {
-  0% {
-    box-shadow: -72px 0 #FFF inset;
-  }
-  100% {
-    box-shadow: 48px 0 #FFF inset;
-  }
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #F0F0F0 25%,
+    #E8E8E8 50%,
+    #F0F0F0 75%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
 }

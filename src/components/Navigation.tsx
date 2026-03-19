@@ -6,83 +6,44 @@ import { usePathname } from "next/navigation";
 export default function Navigation() {
   const pathname = usePathname();
 
+  if (pathname === "/") return null;
+
   const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/shop", label: "Shop" },
+    { href: "/collection", label: "Collection" },
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
 
-  const isHome = pathname === "/";
+  const isActive = (href: string) => {
+    if (href === "/collection") return pathname.startsWith("/collection");
+    if (href === "/portfolio") return pathname.startsWith("/portfolio");
+    return pathname === href;
+  };
 
   return (
-    <nav
-      className={`${
-        isHome
-          ? "fixed inset-x-0 top-0 z-50 w-full p-4 lg:p-8"
-          : "bg-background w-full p-4 lg:p-8"
-      }`}
-    >
-      <div className="mx-auto max-w-7xl">
-        {/* Mobile Layout */}
-        <div className="flex flex-col items-center space-y-4 lg:hidden">
-          {/* Brand - Centered on first row */}
-          <Link href="/" className="text-4xl font-bold tracking-tight">
-            BISQKIT
-          </Link>
+    <nav className="w-full bg-[#F7F5F2] px-6 lg:px-8 py-4 flex items-center justify-between border-b border-[#E8E8E8]">
+      <Link
+        href="/"
+        className="text-sm font-medium text-[#111111]"
+      >
+        bisqkit
+      </Link>
 
-          {/* Navigation Links - Second row */}
-          <div className="flex gap-8 text-lg">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`${
-                  item.href === "/shop"
-                    ? pathname.startsWith("/shop")
-                      ? "underline underline-offset-4"
-                      : ""
-                    : pathname === item.href
-                      ? "underline underline-offset-4"
-                      : ""
-                } hover:underline`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop Layout */}
-        <div className="hidden items-start justify-between lg:flex">
-          {/* Brand on the left */}
+      <div className="flex gap-6">
+        {navItems.map((item) => (
           <Link
-            href="/"
-            className="text-6xl tracking-wide lg:text-7xl xl:text-8xl 2xl:text-[9rem]"
+            key={item.href}
+            href={item.href}
+            className={`text-sm transition-colors ${
+              isActive(item.href)
+                ? "text-[#111111]"
+                : "text-[#777777] hover:text-[#111111]"
+            }`}
           >
-            BISQKIT
+            {item.label}
           </Link>
-
-          {/* Navigation Links on the right */}
-          <div className="flex items-start gap-16 text-lg tracking-widest">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`${
-                  item.href === "/shop"
-                    ? pathname.startsWith("/shop")
-                      ? "underline underline-offset-8"
-                      : ""
-                    : pathname === item.href
-                      ? "underline underline-offset-8"
-                      : ""
-                } underline-offset-8 hover:underline`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </nav>
   );

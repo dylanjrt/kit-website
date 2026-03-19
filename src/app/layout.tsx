@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "../components/Navigation";
-import { Tinos } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import Footer from "../components/Footer";
-const tinos = Tinos({
-  variable: "--font-tinos",
+import Grain from "../components/Grain";
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "500"],
+  style: ["normal"],
 });
 
 export const metadata: Metadata = {
@@ -23,8 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${tinos.className} text-primary flex min-h-screen flex-col antialiased`}
+        className={`${dmSans.variable} text-[#111111] flex min-h-screen flex-col antialiased`}
       >
+        <Grain />
         <Navigation />
         <main className="p-0">{children}</main>
         <Footer />

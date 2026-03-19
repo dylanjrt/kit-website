@@ -14,7 +14,18 @@ export const allItemsQuery = groq`
     featured,
     publishedAt,
     images[] {
-      asset->,
+      asset->{
+        _ref,
+        _type,
+        url,
+        metadata {
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      },
       alt,
       caption
     },
@@ -40,7 +51,18 @@ export const featuredItemsQuery = groq`
     currency,
     availability,
     images[] {
-      asset->,
+      asset->{
+        _ref,
+        _type,
+        url,
+        metadata {
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      },
       alt,
       caption
     },
@@ -63,7 +85,18 @@ export const itemsByCategoryQuery = groq`
     featured,
     publishedAt,
     images[] {
-      asset->,
+      asset->{
+        _ref,
+        _type,
+        url,
+        metadata {
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      },
       alt,
       caption
     },
@@ -93,7 +126,18 @@ export const singleItemQuery = groq`
     featured,
     publishedAt,
     images[] {
-      asset->,
+      asset->{
+        _ref,
+        _type,
+        url,
+        metadata {
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      },
       alt,
       caption
     },
@@ -230,6 +274,44 @@ export const settingsQuery = groq`
   }
 `;
 
+// Portfolio project queries
+export const allProjectsQuery = groq`
+  *[_type == "project"] {
+    _id,
+    title,
+    slug,
+    year,
+    category,
+    coverImage {
+      asset->,
+      alt,
+      caption
+    },
+    orderRank
+  } | order(orderRank asc, year desc)
+`;
+
+export const singleProjectQuery = groq`
+  *[_type == "project" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    year,
+    category,
+    coverImage {
+      asset->,
+      alt,
+      caption
+    },
+    description,
+    images[] {
+      asset->,
+      alt,
+      caption
+    }
+  }
+`;
+
 // Helper functions
 export async function getAllItems() {
   return await client.fetch(allItemsQuery);
@@ -273,4 +355,12 @@ export async function getHomePage() {
 
 export async function getSettings() {
   return await client.fetch(settingsQuery);
+}
+
+export async function getAllProjects() {
+  return await client.fetch(allProjectsQuery);
+}
+
+export async function getSingleProject(slug) {
+  return await client.fetch(singleProjectQuery, { slug });
 }
